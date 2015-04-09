@@ -20,6 +20,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+/**
+ * This is a test class 
+ * @author summers
+ */
 public class MainActivity extends Activity {
 
     @Override
