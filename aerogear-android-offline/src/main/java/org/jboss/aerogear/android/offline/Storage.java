@@ -16,12 +16,25 @@
 package org.jboss.aerogear.android.offline;
 
 import java.io.File;
-import org.jboss.aerogear.android.core.Provider;
+import java.net.URL;
+import org.jboss.aerogear.android.core.Callback;
 
 /**
- * Path Providers provide a pluggable implementation for determining the path 
- * of an offline cache.
+ * A Storage instance provides async crud operations.
+ *
+ * @author summers
  */
-public interface PathProvider extends Provider<File> {
+public interface Storage {
 
+    /**
+     *
+     * This should check and see if a file related to the URL is available. If
+     * the file is locally stored, the file should be passed to the callback. If
+     * the file is not it should be fetched, saved, and returned to the
+     * callback.
+     *
+     * @param url the url to save
+     * @param saveCallback the callback to call after the save is completed
+     */
+    public void get(URL url, Callback<File> saveCallback);
 }

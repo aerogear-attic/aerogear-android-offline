@@ -15,13 +15,20 @@
  */
 package org.jboss.aerogear.android.offline;
 
-import java.io.File;
-import org.jboss.aerogear.android.core.Provider;
+import android.content.Context;
+import org.jboss.aerogear.android.offline.storage.DefaultLocalStorage;
 
 /**
- * Path Providers provide a pluggable implementation for determining the path 
- * of an offline cache.
+ * This is the factory class for offline.
+ * 
+ * //TODO make match other patterns.
+ *
+ * @author summers
  */
-public interface PathProvider extends Provider<File> {
-
+public class Offline {
+    
+    public static Storage defaultStorage(Context appContext) {
+        return new DefaultLocalStorage(appContext);
+    }
+    
 }

@@ -16,6 +16,7 @@
  */
 package org.jboss.aerogear.android.offline.test;
 
+import java.io.File;
 import org.jboss.aerogear.android.offline.PathProvider;
 import org.jboss.aerogear.android.offline.provider.StaticPathProvider;
 import org.jboss.aerogear.android.offline.test.util.PatchedActivityInstrumentationTestCase;
@@ -28,8 +29,8 @@ public class PathProviderTest extends PatchedActivityInstrumentationTestCase<Mai
     }
 
     public void testStaticPathProvider() {
-        PathProvider p = new StaticPathProvider("/sdcard");
-        
+        PathProvider provider = new StaticPathProvider("/sdcard");
+        assertEquals(new File("/sdcard"), provider.get());
     }
 
 }
