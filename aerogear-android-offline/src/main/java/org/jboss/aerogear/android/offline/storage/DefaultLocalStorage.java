@@ -28,8 +28,6 @@ import org.jboss.aerogear.android.pipe.rest.RestAdapter;
 
 /**
  * This stores files to the  internal directory for an app on Android.
- * 
- * @author summers
  */
 public class DefaultLocalStorage implements Storage {
     

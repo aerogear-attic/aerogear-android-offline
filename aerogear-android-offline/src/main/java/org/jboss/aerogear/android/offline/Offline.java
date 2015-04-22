@@ -22,8 +22,6 @@ import org.jboss.aerogear.android.offline.storage.DefaultLocalStorage;
  * This is the factory class for offline.
  * 
  * //TODO make match other patterns.
- *
- * @author summers
  */
 public class Offline {
     

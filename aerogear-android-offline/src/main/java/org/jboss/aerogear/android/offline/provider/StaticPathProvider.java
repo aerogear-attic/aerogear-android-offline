@@ -18,10 +18,6 @@ package org.jboss.aerogear.android.offline.provider;
 import java.io.File;
 import org.jboss.aerogear.android.offline.PathProvider;
 
-/**
- *
- * @author summers
- */
 public class StaticPathProvider implements PathProvider {
     private final File file;
 

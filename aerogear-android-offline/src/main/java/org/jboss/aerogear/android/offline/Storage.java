@@ -21,8 +21,6 @@ import org.jboss.aerogear.android.core.Callback;
 
 /**
  * A Storage instance provides async crud operations.
- *
- * @author summers
  */
 public interface Storage {
 
