@@ -14,23 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.aerogear.android.offline.test;
+package org.jboss.aerogear.android.offline.internal;
 
-import java.io.File;
-import org.jboss.aerogear.android.offline.PathProvider;
-import org.jboss.aerogear.android.offline.provider.StaticPathProvider;
-import org.jboss.aerogear.android.offline.test.util.PatchedActivityInstrumentationTestCase;
+import org.jboss.aerogear.android.core.ConfigurationProvider;
 
+public class InternalStorageConfigurationProvider implements ConfigurationProvider<InternalStorageConfiguration> {
 
-public class PathProviderTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
-
-    public PathProviderTest() {
-        super(MainActivity.class);
-    }
-
-    public void testStaticPathProvider() {
-        PathProvider provider = new StaticPathProvider("/sdcard");
-        assertEquals(new File("/sdcard"), provider.get());
+    @Override
+    public InternalStorageConfiguration newConfiguration() {
+        return new InternalStorageConfiguration();
     }
 
 }

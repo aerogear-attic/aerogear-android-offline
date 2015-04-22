@@ -16,7 +16,7 @@
 package org.jboss.aerogear.android.offline;
 
 import android.content.Context;
-import org.jboss.aerogear.android.offline.storage.DefaultLocalStorage;
+import org.jboss.aerogear.android.offline.internal.InternalStorage;
 
 /**
  * This is the factory class for offline.
@@ -26,7 +26,7 @@ import org.jboss.aerogear.android.offline.storage.DefaultLocalStorage;
 public class Offline {
     
     public static Storage defaultStorage(Context appContext) {
-        return new DefaultLocalStorage(appContext);
+        return new InternalStorage(appContext);
     }
     
 }

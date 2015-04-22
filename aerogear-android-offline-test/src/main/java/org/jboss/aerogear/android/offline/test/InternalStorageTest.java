@@ -17,6 +17,10 @@ package org.jboss.aerogear.android.offline.test;
 
 import android.content.Context;
 import android.util.Log;
+import org.jboss.aerogear.android.core.Callback;
+import org.jboss.aerogear.android.offline.internal.InternalStorage;
+import org.jboss.aerogear.android.offline.test.util.PatchedActivityInstrumentationTestCase;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -25,21 +29,16 @@ import java.net.URL;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
-import org.jboss.aerogear.android.offline.Offline;
-import org.jboss.aerogear.android.core.Callback;
-import org.jboss.aerogear.android.offline.test.util.PatchedActivityInstrumentationTestCase;
 
 /**
- *
- * This class tests various saving scenarios.
- *
- * @author summers
+ * This class test Internal Storage.
  */
-public class SaveFilesTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+public class InternalStorageTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
 
-    private String TAG = SaveFilesTest.class.getSimpleName();
+    private String TAG = InternalStorageTest.class.getSimpleName();
     private URL filename;
-    public SaveFilesTest() {
+
+    public InternalStorageTest() {
         super(MainActivity.class);
     }
 
@@ -48,7 +47,7 @@ public class SaveFilesTest extends PatchedActivityInstrumentationTestCase<MainAc
         Context context = getActivity();
         FileOutputStream fileStream = context.openFileOutput("test", Context.MODE_PRIVATE);
         InputStream sampleInputStream = context.getResources().openRawResource(R.raw.sample_document);
-        int read = -1;
+        int read;
         while ((read = sampleInputStream.read()) != -1) {
             fileStream.write(read);
         }
@@ -61,14 +60,12 @@ public class SaveFilesTest extends PatchedActivityInstrumentationTestCase<MainAc
     protected void tearDown() throws Exception {
         getActivity().deleteFile("test");
     }
-    
-    
 
-    public void testSaveFileFromUrlToDefaultStore() throws MalformedURLException, InterruptedException {
+    public void testGetFileFromUrl() throws MalformedURLException, InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
         final AtomicReference<File> fileRef = new AtomicReference<File>();
-        Offline.defaultStorage(getActivity()).get(filename, new Callback<File>() {
-            
+        new InternalStorage(getActivity()).get(filename, new Callback<File>() {
+
             @Override
             public void onSuccess(File f) {
                 fileRef.set(f);
@@ -84,7 +81,7 @@ public class SaveFilesTest extends PatchedActivityInstrumentationTestCase<MainAc
 
         latch.await(60, TimeUnit.SECONDS);
         assertNotNull(fileRef.get());
-        
+
     }
 
 }
