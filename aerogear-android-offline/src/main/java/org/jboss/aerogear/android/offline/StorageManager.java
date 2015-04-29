@@ -28,7 +28,7 @@ public class StorageManager {
     private static Map<String, Storage> storages = new HashMap<String, Storage>();
 
     private static Map<Class<? extends StorageConfiguration<?>>, ConfigurationProvider<?>> configurationProviderMap =
-           new HashMap<Class<? extends StorageConfiguration<?>>, ConfigurationProvider<?>>();
+            new HashMap<Class<? extends StorageConfiguration<?>>, ConfigurationProvider<?>>();
 
     private static OnStorageCreatedListener onStorageCreatedListener = new OnStorageCreatedListener() {
         @Override
@@ -55,7 +55,7 @@ public class StorageManager {
         @SuppressWarnings("unchecked")
         ConfigurationProvider<? extends StorageConfiguration<CFG>> provider =
                 (ConfigurationProvider<? extends StorageConfiguration<CFG>>)
-                        configurationProviderMap.get(storageImplementationClass);
+                configurationProviderMap.get(storageImplementationClass);
 
         if (provider == null) {
             throw new IllegalArgumentException("Configuration not registered!");

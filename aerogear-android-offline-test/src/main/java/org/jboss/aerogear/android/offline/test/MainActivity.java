@@ -21,7 +21,8 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 /**
- * This is a test class 
+ * This is a test class
+ * 
  * @author summers
  */
 public class MainActivity extends Activity {

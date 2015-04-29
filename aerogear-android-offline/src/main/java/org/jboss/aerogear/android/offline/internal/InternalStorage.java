@@ -40,7 +40,7 @@ public class InternalStorage implements Storage {
     /**
      * Creates an instance using the appContext and creates any necessary
      * directories if they are missing.
-     *
+     * 
      * @param appContext the app's application context
      */
     public InternalStorage(Context appContext) {
@@ -83,6 +83,5 @@ public class InternalStorage implements Storage {
             }
         });
     }
-
 
 }

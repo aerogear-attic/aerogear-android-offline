@@ -25,9 +25,9 @@ import org.jboss.aerogear.android.offline.internal.InternalStorage;
  * //TODO make match other patterns.
  */
 public class Offline {
-    
+
     public static Storage defaultStorage(Context appContext) {
         return new InternalStorage(appContext);
     }
-    
+
 }

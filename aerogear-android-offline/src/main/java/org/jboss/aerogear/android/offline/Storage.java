@@ -26,12 +26,12 @@ import org.jboss.aerogear.android.core.Callback;
 public interface Storage {
 
     /**
-     *
+     * 
      * This should check and see if a file related to the URL is available. If
      * the file is locally stored, the file should be passed to the callback. If
      * the file is not it should be fetched, saved, and returned to the
      * callback.
-     *
+     * 
      * @param url the url to save
      * @param saveCallback the callback to call after the save is completed
      */
