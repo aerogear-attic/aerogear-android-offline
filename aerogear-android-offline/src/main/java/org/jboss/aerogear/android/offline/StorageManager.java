@@ -23,6 +23,10 @@ import org.jboss.aerogear.android.offline.internal.InternalStorageConfigurationP
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A Manager which handles the registration of configurations and references to
+ * created storages.
+ */
 public class StorageManager {
 
     private static Map<String, Storage> storages = new HashMap<String, Storage>();

@@ -16,6 +16,9 @@
  */
 package org.jboss.aerogear.android.offline;
 
+/**
+ * A Listener called when storages are created.
+ */
 public interface OnStorageCreatedListener {
 
     void onStorageCreated(StorageConfiguration<?> configuration, Storage store);

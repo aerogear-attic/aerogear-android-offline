@@ -21,6 +21,11 @@ import org.jboss.aerogear.android.core.Config;
 import java.util.Collection;
 import java.util.HashSet;
 
+/**
+ * This is the top level StorageConfiguration class.
+ *
+ * @param <CONFIGURATION> The implementation class type.
+ */
 public abstract class StorageConfiguration<CONFIGURATION extends StorageConfiguration<CONFIGURATION>>
         implements Config<CONFIGURATION> {
 
