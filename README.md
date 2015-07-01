@@ -1,4 +1,4 @@
-# aerogear-android-offline
+# aerogear-android-offline [![Build Status](https://travis-ci.org/aerogear/aerogear-android-offline.png)](https://travis-ci.org/aerogear/aerogear-android-offline)
 
 |                 | Project Info  |
 | --------------- | ------------- |
