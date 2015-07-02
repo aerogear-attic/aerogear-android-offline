@@ -1,0 +1,79 @@
+language: android
+
+notifications:
+  irc: "irc.freenode.org#aerogear"
+
+jdk:
+   - oraclejdk8
+   - oraclejdk7
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-21.1.1
+    - android-21
+    - android-19
+    - sys-img-armeabi-v7a-android-19
+
+env:
+  global:
+    - RELEASE_VERSION=$(grep "<version>" pom.xml | tr "\n" ":" | cut -d ':' -f1 | sed s/\<version\>//g| sed s/\"//g| sed s/\<\\/version\>//g | tr -d ' ')
+  matrix:
+    - ANDROID_SDK=android-21 ANDROID_EMULATOR=android-19 ANDROID_ABI=armeabi-v7a
+
+before_install:
+
+  # Kill unnecessary services
+  - sudo service mysql stop
+  - sudo service postgresql stop
+
+  #################################################
+  ########## maven-android-sdk-deployer ###########
+  #################################################
+
+  # Checkout maven-android-sdk-deployer
+  - git clone git://github.com/mosabua/maven-android-sdk-deployer.git
+
+  # Install android maven repository
+  - cd $PWD/maven-android-sdk-deployer/platforms/$ANDROID_SDK
+  - mvn  install -N --quiet
+  - cd -
+
+  #################################################
+  ############ Snapshot dependencies ##############
+  #################################################
+
+  # AeroGear Android Core
+  - git clone git://github.com/aerogear/aerogear-android-core.git
+  - cd $PWD/aerogear-android-core
+  - mvn install -N --quiet
+  - cd -
+
+  # AeroGear Android Pipe
+  - git clone git://github.com/aerogear/aerogear-android-pipe.git
+  - cd $PWD/aerogear-android-pipe/
+  - mvn install -DskipTests -fn  --quiet 
+  - cd -
+
+before_script:
+
+  # Create emulator
+  - echo no | android create avd --force -n test -t $ANDROID_EMULATOR --abi $ANDROID_ABI
+
+script:
+  - mvn install -Drelease
+  - cd aerogear-android-offline-test
+  - mvn package -DskipTests=true;
+
+  - emulator -avd test -no-skin -no-audio -no-window&
+  - wget https://raw.githubusercontent.com/travis-ci/travis-cookbooks/master/ci_environment/android-sdk/files/default/android-wait-for-emulator
+  - chmod a+x ./android-wait-for-emulator
+  - ./android-wait-for-emulator
+  - adb shell input keyevent 82
+  - adb shell df
+  - adb install target/aerogear-android-offline-test-$RELEASE_VERSION.apk
+  - mvn android:instrument
+
+
+
