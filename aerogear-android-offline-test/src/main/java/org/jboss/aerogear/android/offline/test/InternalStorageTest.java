@@ -17,6 +17,7 @@
 package org.jboss.aerogear.android.offline.test;
 
 import android.content.Context;
+import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.offline.internal.InternalStorage;
@@ -30,11 +31,16 @@ import java.net.URL;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * This class test Internal Storage.
- */
-public class InternalStorageTest extends PatchedActivityInstrumentationTestCase<MainActivity> {
+ */@RunWith(AndroidJUnit4.class)
+public class InternalStorageTest extends PatchedActivityInstrumentationTestCase {
 
     private String TAG = InternalStorageTest.class.getSimpleName();
     private URL filename;
@@ -43,8 +49,8 @@ public class InternalStorageTest extends PatchedActivityInstrumentationTestCase<
         super(MainActivity.class);
     }
 
-    @Override
-    protected void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         Context context = getActivity();
         FileOutputStream fileStream = context.openFileOutput("test", Context.MODE_PRIVATE);
         InputStream sampleInputStream = context.getResources().openRawResource(R.raw.sample_document);
@@ -57,11 +63,12 @@ public class InternalStorageTest extends PatchedActivityInstrumentationTestCase<
         filename = context.getFileStreamPath("test").toURI().toURL();
     }
 
-    @Override
-    protected void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         getActivity().deleteFile("test");
     }
 
+    @Test
     public void testGetFileFromUrl() throws MalformedURLException, InterruptedException {
         final CountDownLatch latch = new CountDownLatch(1);
         final AtomicReference<File> fileRef = new AtomicReference<File>();
@@ -81,7 +88,7 @@ public class InternalStorageTest extends PatchedActivityInstrumentationTestCase<
         });
 
         latch.await(60, TimeUnit.SECONDS);
-        assertNotNull(fileRef.get());
+        Assert.assertNotNull(fileRef.get());
 
     }
 
