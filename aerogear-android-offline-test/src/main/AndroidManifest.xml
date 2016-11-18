@@ -19,7 +19,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.jboss.aerogear.android.offline.test">
-    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="23"/>
+    <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="24"/>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
