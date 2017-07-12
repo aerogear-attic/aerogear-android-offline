@@ -1,6 +1,7 @@
 # aerogear-android-offline
  
-[![Build Status](https://travis-ci.org/aerogear/aerogear-android-offline.png)](https://travis-ci.org/aerogear/aerogear-android-offline)
+[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-android-offline/master.svg)](https://circleci.com/gh/aerogear/aerogear-android-offline)
+[![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
 
 |                 | Project Info  |
 | --------------- | ------------- |
