@@ -1,4 +1,6 @@
 # aerogear-android-offline
+
+> This project was a PoC for offline work and never got released. Now it's archived!!!
  
 [![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-android-offline/master.svg)](https://circleci.com/gh/aerogear/aerogear-android-offline)
 [![License](https://img.shields.io/badge/-Apache%202.0-blue.svg)](https://opensource.org/s/Apache-2.0)
